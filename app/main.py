@@ -1,15 +1,17 @@
 class Animal:
-    alive = []  # may be reassigned by tests; keep it a plain list
+    alive: list["Animal"] = []
 
     def __init__(
-        self, name: str,
+        self,
+        name: str,
         health: int = 100,
-        hidden: bool = False
+        hidden: bool = False,
     ) -> None:
         self.name = name
         self.health = health
         self.hidden = hidden
-        Animal.alive.append(self)
+        if health > 0:
+            Animal.alive.append(self)
 
     def __repr__(self) -> str:
         # Exact format expected by the tests (no quotes around keys)
